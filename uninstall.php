@@ -1,21 +1,56 @@
 <?php
 /**
- * Uninstall handler for __PLUGIN_NAME__.
+ * Uninstall handler.
  *
- * Runs when the plugin is deleted from Plugins → Installed Plugins. Deactivation
- * alone does NOT trigger this file. Clean up all plugin data (database tables,
- * options, transients, cron hooks) so the site is returned to the state it
- * was in before the plugin was installed.
+ * Removes all plugin data when the plugin is uninstalled.
  *
- * @package __PLUGIN_PACKAGE__
+ * @package Unstoppable_White_Label
  */
 
-defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
+// If uninstall not called from WordPress, exit.
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
+}
 
-// Example cleanup — adjust as the plugin grows:
-//
-// delete_option( '__prefix___settings' );
-// delete_option( '__prefix___db_version' );
-//
-// global $wpdb;
-// $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}__prefix___my_table" );
+/**
+ * Clean up plugin data.
+ *
+ * Only deletes data if the user has opted in via settings.
+ */
+function uswl_uninstall_cleanup() {
+	// Get settings to check if user wants data deleted.
+	$settings = get_option( 'uswl_settings', array() );
+
+	// Only proceed if user has enabled delete on uninstall.
+	if ( empty( $settings['general']['delete_on_uninstall'] ) ) {
+		return;
+	}
+
+	global $wpdb;
+
+	// Delete main settings.
+	delete_option( 'uswl_settings' );
+
+	// Delete installation timestamp.
+	delete_option( 'uswl_installed_at' );
+
+	// Delete any backup settings.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+	$wpdb->query(
+		"DELETE FROM {$wpdb->options} 
+		WHERE option_name LIKE 'uswl_settings_backup_%'"
+	);
+
+	// Delete all transients.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+	$wpdb->query(
+		"DELETE FROM {$wpdb->options} 
+		WHERE option_name LIKE '_transient_uswl_%' 
+		OR option_name LIKE '_transient_timeout_uswl_%'"
+	);
+
+	// Clear any cached data.
+	wp_cache_flush();
+}
+
+uswl_uninstall_cleanup();
