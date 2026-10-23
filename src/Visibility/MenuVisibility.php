@@ -69,6 +69,10 @@ class MenuVisibility {
 	/**
 	 * Get the maximum number of menus that can be hidden.
 	 *
+	 * The free version imposes no limit. This matches
+	 * AdminAssets::get_max_limit(), which feeds the same figure to the
+	 * settings screen through the same filter.
+	 *
 	 * @return int -1 for unlimited.
 	 */
 	public function get_max_hidden() {
@@ -77,9 +81,9 @@ class MenuVisibility {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param int $max Maximum count (default 5, -1 for unlimited).
+		 * @param int $max Maximum count (-1 for unlimited).
 		 */
-		return apply_filters( 'uswl_visibility_max_hidden_menus', 5 );
+		return apply_filters( 'uswl_visibility_max_hidden_menus', -1 );
 	}
 
 	/**
@@ -122,13 +126,14 @@ class MenuVisibility {
 
 		$hidden = array();
 
-		// While previewing, never hide our own menu — otherwise the admin has
-		// no way back until the 10-minute session expires.
+		// Never hide our own menu, under any circumstances. Hiding it removes
+		// the only discoverable route back into the settings screen, leaving
+		// the admin locked out until they recall the direct page URL. This was
+		// previously guarded only while preview mode was active.
 		$uswl_own_menu = \Unstoppable\WhiteLabel\Admin\AdminPage::PAGE_SLUG;
-		$uswl_previewing = $this->capabilities->is_preview_mode();
 
 		foreach ( $menus_to_hide as $menu_slug ) {
-			if ( $uswl_previewing && $uswl_own_menu === $menu_slug ) {
+			if ( $uswl_own_menu === $menu_slug ) {
 				continue;
 			}
 

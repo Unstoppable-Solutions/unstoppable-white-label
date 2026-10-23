@@ -3,8 +3,8 @@ Contributors: paramedic192
 Donate link: https://unstoppablesolutions.app/donate
 Tags: white label, branding, admin, login, customize
 Requires at least: 6.0
-Tested up to: 7.1
-Stable tag: 1.2.26
+Tested up to: 7.1.3
+Stable tag: 1.2.27
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -138,6 +138,11 @@ No. This plugin only makes visual changes. Hidden items are still accessible via
 6. Tools – import, export, and reset settings
 
 == Changelog ==
+
+= 1.2.27 =
+* Fixed: The plugin's own admin menu can no longer be hidden at all. Previously it was protected only while preview mode was active, so hiding "White Label" in Visibility left no way back into the settings screen except the direct page URL.
+* Changed: Tested up to WordPress 7.1.3.
+* Fixed: Internal menu limit helper defaulted to 5 instead of unlimited, which disagreed with the rest of the plugin. No user-facing change.
 
 = 1.2.26 =
 * Fixed: Custom admin bar logo rendered at full size for White Label Administrators because the sizing CSS was skipped for them.

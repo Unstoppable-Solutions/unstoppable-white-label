@@ -3,7 +3,7 @@
  * Plugin Name: Unstoppable White Label
  * Plugin URI: https://unstoppablesolutions.app/plugins/unstoppable-white-label
  * Description: Remove WordPress branding and customize your admin experience. Replace logos, customize the login page, hide admin menus, and more.
- * Version: 1.2.26
+ * Version: 1.2.27
  * Author: Unstoppable Solutions
  * Author URI: https://unstoppablesolutions.app
  * License: GPL-2.0-or-later
@@ -11,7 +11,7 @@
  * Text Domain: unstoppable-white-label
  * Domain Path: /languages
  * Requires at least: 6.0
- * Tested up to: 7.1
+ * Tested up to: 7.1.3
  * Requires PHP: 7.4
  *
  * @package Unstoppable_White_Label
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var string
  */
-define( 'USWL_VERSION', '1.2.26' );
+define( 'USWL_VERSION', '1.2.27' );
 
 /**
  * Minimum WordPress version required.
