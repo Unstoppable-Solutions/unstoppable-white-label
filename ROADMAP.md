@@ -22,8 +22,10 @@ complete.
 Priority: High · Complexity: Small · Milestone: 1.2.27 · **Status: Completed** · Source: Previous Discussion
 
 ### 1.2 WordPress 7.1.3 compatibility metadata — **Confirmed**
-Bump `Tested up to` in the plugin header and `readme.txt`.
-*Benefit:* Directory listing stops showing a compatibility warning.
+Verified against WordPress 7.1.3. `Tested up to` reads `7.1`: WordPress.org
+accepts a `major.minor` value only, and Plugin Check errors on a patch
+version. The field was already correct; the verification is what changed.
+*Benefit:* Directory listing reflects testing through the current release.
 Priority: High · Complexity: Small · Milestone: 1.2.27 · **Status: Completed** · Source: Previous Discussion
 
 ### 1.3 Unconditional self-lockout guard — **Confirmed**

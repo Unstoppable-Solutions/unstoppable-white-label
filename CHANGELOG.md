@@ -21,7 +21,8 @@ Nothing yet. See `ROADMAP.md` for what's planned.
   is unused by the settings UI, so there was no user-facing effect.
 
 ### Changed
-- Tested up to WordPress 7.1.3.
+- Verified against WordPress 7.1.3. The `Tested up to` field records `7.1`,
+  since WordPress.org accepts only `major.minor` there.
 
 ## [1.2.26]
 
