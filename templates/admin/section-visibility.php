@@ -18,7 +18,7 @@ $uswl_visibility = Plugin::instance()->loader()->get_module( 'visibility_manager
 
 $uswl_menus    = $uswl_visibility ? $uswl_visibility->menus()->get_available() : array();
 $uswl_adminbar = $uswl_visibility ? $uswl_visibility->admin_bar()->get_available() : array();
-$plugins  = $uswl_visibility ? $uswl_visibility->plugins()->get_available() : array();
+$uswl_plugins = $uswl_visibility ? $uswl_visibility->plugins()->get_available() : array();
 
 // Get themes
 $uswl_theme_visibility = Plugin::instance()->loader()->get_module( 'theme_visibility' );
@@ -142,7 +142,7 @@ $uswl_renamed_menus   = $settings['menus']['renamed'] ?? array();
 		<tr>
 			<th scope="row"><?php esc_html_e( 'Hide Plugins', 'unstoppable-white-label' ); ?></th>
 			<td>
-				<?php if ( ! empty( $plugins ) ) : ?>
+				<?php if ( ! empty( $uswl_plugins ) ) : ?>
 				<div class="uswl-checkbox-controls" style="margin-bottom: 8px;">
 					<button type="button" class="button button-small uswl-check-all" data-target="plugins">
 						<?php esc_html_e( 'Check All', 'unstoppable-white-label' ); ?>
@@ -154,10 +154,10 @@ $uswl_renamed_menus   = $settings['menus']['renamed'] ?? array();
 				<?php endif; ?>
 				
 				<div class="uswl-checkbox-list" id="uswl-plugins-list" style="max-height: 250px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background: #fff;">
-					<?php if ( empty( $plugins ) ) : ?>
+					<?php if ( empty( $uswl_plugins ) ) : ?>
 						<p class="description"><?php esc_html_e( 'No plugins found.', 'unstoppable-white-label' ); ?></p>
 					<?php else : ?>
-						<?php foreach ( $plugins as $uswl_basename => $uswl_name ) : ?>
+						<?php foreach ( $uswl_plugins as $uswl_basename => $uswl_name ) : ?>
 							<label style="display: block; margin-bottom: 8px;" class="uswl-checkbox-label">
 								<input type="checkbox" 
 									   name="visibility[plugins][]" 

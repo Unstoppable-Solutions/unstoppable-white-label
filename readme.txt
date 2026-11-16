@@ -4,7 +4,7 @@ Donate link: https://unstoppablesolutions.app/donate
 Tags: white label, branding, admin, login, customize
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 1.2.27
+Stable tag: 1.2.28
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -138,6 +138,10 @@ No. This plugin only makes visual changes. Hidden items are still accessible via
 6. Tools – import, export, and reset settings
 
 == Changelog ==
+
+= 1.2.28 =
+* Fixed: A template variable in the Visibility settings was missing the plugin's `uswl_` prefix, which WordPress.org's Plugin Check flags.
+* Added: Plugin directory screenshots, banner and icon are now kept in the repository and published with each release.
 
 = 1.2.27 =
 * Fixed: The plugin's own admin menu can no longer be hidden at all. Previously it was protected only while preview mode was active, so hiding "White Label" in Visibility left no way back into the settings screen except the direct page URL.

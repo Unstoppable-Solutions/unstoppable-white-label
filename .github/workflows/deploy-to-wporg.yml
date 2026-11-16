@@ -1,9 +1,15 @@
 name: Deploy to WordPress.org
 
-# Dormant until this plugin is accepted into the WordPress.org directory.
-# Add SVN_USERNAME and SVN_PASSWORD secrets in repo settings before the
-# first release, and update the SLUG value below to match the plugin's
-# WordPress.org slug.
+# Live. Fires on every published GitHub Release and pushes that version to
+# the WordPress.org SVN repo at https://wordpress.org/plugins/unstoppable-white-label/
+#
+# SVN_USERNAME and SVN_PASSWORD are org-level secrets on unstoppable-solutions
+# (not per-repo). SLUG is set below.
+#
+# Marketing assets (screenshots, banner, icon) live in .wordpress-org/ and are
+# mirrored to the SVN assets/ directory by this action on every deploy. SVN is
+# treated as a mirror, not a store: anything uploaded straight to SVN without a
+# matching file in .wordpress-org/ is removed on the next release.
 
 on:
   release:

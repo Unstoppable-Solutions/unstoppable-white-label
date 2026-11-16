@@ -51,14 +51,16 @@ other variable in the file carries the `uswl_` prefix. Release 1.2.3 claimed
 to have prefixed all template variables; this one was missed. Plugin Check
 flags unprefixed globals in templates.
 *Benefit:* Closes a WordPress.org compliance gap before a reviewer finds it.
-Priority: Medium · Complexity: Small · Milestone: 1.2.28 · **Status: Proposed** · Source: Code Review
+Priority: Medium · Complexity: Small · Milestone: 1.2.28 · **Status: Completed** · Source: Code Review
 
 ### 1.6 Minimum WordPress version is declared inconsistently
-The plugin header and `readme.txt` both say `Requires at least: 6.0`, but
-`USWL_MIN_WP_VERSION` is `5.8`, so the runtime check is more permissive than
-the published requirement. Raising the constant to `6.0` would deactivate the
-plugin for anyone still on 5.8–5.9, so this needs a deliberate decision
-rather than a silent harmonisation.
+The plugin header and `readme.txt` both say `Requires at least: 6.0`, but the
+runtime check is more permissive: `USWL_MIN_WP_VERSION` is `5.8`, and
+`Plugin::MIN_WP_VERSION` is `5.8` as well — three declarations of the same
+requirement, two of which disagree with the published one. Raising the
+constants to `6.0` would deactivate the plugin for anyone still on 5.8–5.9,
+so this needs a deliberate decision rather than a silent harmonisation.
+Whichever way it goes, the value belongs in one place.
 *Benefit:* The advertised requirement and the enforced one agree.
 Priority: Medium · Complexity: Small · Milestone: TBD · **Status: Proposed** · Source: Code Review
 
@@ -68,13 +70,25 @@ into the WordPress.org directory" and instructs the reader to add per-repo
 SVN secrets and set `SLUG`. The plugin is live, `SLUG` is set, and the
 secrets are org-level per `CLAUDE.md`.
 *Benefit:* Stops the comment misleading a future maintainer mid-release.
-Priority: Low · Complexity: Small · Milestone: 1.2.28 · **Status: Proposed** · Source: Code Review
+Priority: Low · Complexity: Small · Milestone: 1.2.28 · **Status: Completed** · Source: Code Review
 
 ### 1.8 Verify the Pro upgrade URL in `AdminNotices`
-Carried over from earlier planning: the `$pro_url` property may still hold a
-boilerplate placeholder from the plugin template.
-*Benefit:* Upsell notices point somewhere real.
-Priority: Medium · Complexity: Small · Milestone: 1.2.28 · **Status: Proposed** · Source: Previous Discussion
+Checked: there is no `$pro_url` property. `AdminNotices` carries no upsell at
+all, and its only outbound link is the WordPress.org reviews URL, which is
+correct. The placeholder this item was worried about came from the plugin
+template and never reached this plugin. Nothing to change.
+*Benefit:* n/a — closed as verified.
+Priority: Medium · Complexity: Small · Milestone: 1.2.28 · **Status: Completed** · Source: Previous Discussion
+
+### 1.9 Directory assets kept in the repository — **Confirmed**
+WordPress.org screenshots, banner and icon now live in `.wordpress-org/`, which
+the deploy workflow mirrors into the SVN `assets/` directory on every release.
+SVN is a mirror rather than a store, so anything uploaded straight to it is
+deleted on the next deploy; keeping the files in git is what makes them
+persist. Excluded from the shipped zip via `.distignore`.
+*Benefit:* The directory listing can carry screenshots, and they survive
+every future release.
+Priority: High · Complexity: Small · Milestone: 1.2.28 · **Status: Completed** · Source: Previous Discussion
 
 ---
 
@@ -172,7 +186,12 @@ Priority: Medium · Complexity: Medium · Milestone: TBD · **Status: Proposed**
 
 ## Maintenance
 
-- Bump `Tested up to` as WordPress ships each release.
+- Bump `Tested up to` as WordPress ships each release. It takes a
+  `major.minor` value, so a patch release on a branch already recorded needs
+  no change (verified through 7.1.4; the field reads `7.1`).
+- Drop the actual screenshot, banner and icon files into `.wordpress-org/`.
+  The folder and its spec are in place; the images themselves are still to
+  come, and `readme.txt` already declares six screenshots.
 - Keep `readme.txt`, `CHANGELOG.md` and the plugin header version in step —
   see the Release workflow in `CLAUDE.md`.
 - Update this file as items land.

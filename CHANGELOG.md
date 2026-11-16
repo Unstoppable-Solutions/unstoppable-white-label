@@ -8,6 +8,30 @@ page. This file follows the format described at https://keepachangelog.com.
 
 Nothing yet. See `ROADMAP.md` for what's planned.
 
+## [1.2.28]
+
+### Added
+- `.wordpress-org/` holds the WordPress.org directory assets — screenshots,
+  banner and icon. The deploy workflow mirrors it into the SVN `assets/`
+  directory on every release, so the images survive future deploys instead of
+  being removed. Excluded from the shipped plugin zip via `.distignore`.
+
+### Fixed
+- `templates/admin/section-visibility.php` declared `$plugins` without the
+  `uswl_` prefix that every other template variable carries. Release 1.2.3
+  claimed to have prefixed all of them and missed this one; Plugin Check flags
+  unprefixed globals in templates.
+
+### Changed
+- Refreshed the stale header comment in `deploy-to-wporg.yml`, which still
+  described the workflow as dormant and asked for per-repo SVN secrets.
+
+### Notes
+- Verified against WordPress 7.1.4. `Tested up to` stays at `7.1` — the field
+  takes a `major.minor` value, and 7.1.4 is on a branch already recorded.
+- Confirmed `AdminNotices` carries no placeholder Pro upgrade URL; its only
+  outbound link is the WordPress.org reviews page.
+
 ## [1.2.27]
 
 ### Fixed
