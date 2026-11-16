@@ -11,10 +11,12 @@ Nothing yet. See `ROADMAP.md` for what's planned.
 ## [1.2.28]
 
 ### Added
-- `.wordpress-org/` holds the WordPress.org directory assets — screenshots,
-  banner and icon. The deploy workflow mirrors it into the SVN `assets/`
-  directory on every release, so the images survive future deploys instead of
-  being removed. Excluded from the shipped plugin zip via `.distignore`.
+- Plugin directory assets: six screenshots covering General, Login, Admin,
+  Dashboard, Visibility and Tools, plus the banner (772×250 and 1544×500) and
+  icon (128×128 and 256×256). They live in `.wordpress-org/`, which the deploy
+  workflow mirrors into the SVN `assets/` directory on every release, so they
+  survive future deploys instead of being removed. Excluded from the shipped
+  plugin zip via `.distignore`.
 
 ### Fixed
 - `templates/admin/section-visibility.php` declared `$plugins` without the

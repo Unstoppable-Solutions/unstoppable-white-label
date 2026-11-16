@@ -189,9 +189,9 @@ Priority: Medium · Complexity: Medium · Milestone: TBD · **Status: Proposed**
 - Bump `Tested up to` as WordPress ships each release. It takes a
   `major.minor` value, so a patch release on a branch already recorded needs
   no change (verified through 7.1.4; the field reads `7.1`).
-- Drop the actual screenshot, banner and icon files into `.wordpress-org/`.
-  The folder and its spec are in place; the images themselves are still to
-  come, and `readme.txt` already declares six screenshots.
+- Keep `.wordpress-org/` in step with `readme.txt`. The six screenshots,
+  both banners and both icons are in place; if a screenshot is replaced or
+  added, update the matching `== Screenshots ==` caption in the same commit.
 - Keep `readme.txt`, `CHANGELOG.md` and the plugin header version in step —
   see the Release workflow in `CLAUDE.md`.
 - Update this file as items land.
