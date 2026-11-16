@@ -11,7 +11,6 @@
  * Text Domain: unstoppable-white-label
  * Domain Path: /languages
  * Requires at least: 6.0
- * Tested up to: 7.1
  * Requires PHP: 7.4
  *
  * @package Unstoppable_White_Label

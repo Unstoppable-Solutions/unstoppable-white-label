@@ -25,6 +25,8 @@ Nothing yet. See `ROADMAP.md` for what's planned.
 ### Changed
 - Refreshed the stale header comment in `deploy-to-wporg.yml`, which still
   described the workflow as dormant and asked for per-repo SVN secrets.
+- Removed `Tested up to` from the plugin PHP header. Plugin Check now requires
+  it in `readme.txt` only, so that the two cannot drift apart.
 
 ### Notes
 - Verified against WordPress 7.1.4. `Tested up to` stays at `7.1` — the field

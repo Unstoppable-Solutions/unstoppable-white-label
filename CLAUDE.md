@@ -44,10 +44,13 @@ Namespaced PSR-4 classes under src/.
 
 - **GPL-2.0-or-later** on everything.
 - **One author** for Contributors: in `readme.txt`: `paramedic192` (Dave Stevens).
-- **Tested up to** is bumped as WordPress ships each new release, and takes a
-  `major.minor` value only — Plugin Check errors on a patch version like
-  `7.1.3` ("The version number should only include major versions"). Verified
-  through 7.1.3 (security/maintenance, Oct 2026); the field reads `7.1`.
+- **Tested up to** lives in `readme.txt` ONLY. Plugin Check errors if it is
+  also in the plugin PHP header ("must be declared only in the readme file"),
+  so the header carries `Requires at least` and `Requires PHP` but no
+  `Tested up to`. It takes a `major.minor` value only — Plugin Check errors on
+  a patch version like `7.1.3` ("should only include major versions"), so a
+  patch release on a branch already recorded needs no bump. Verified through
+  7.1.4 (Nov 2026); the field reads `7.1`.
 - **Plugin Check CI config** (`.github/workflows/plugin-check.yml`) is standard across the org: `exclude-checks: late_escaping` + `exclude-files` lists the GitHub-only files (`.github`, `.distignore`, `.gitignore`, `.gitattributes`, `README.md`, `CLAUDE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `CHANGELOG.md`).
 - **`.distignore`** keeps GitHub-only files out of the WP.org zip (CI, docs, this file).
 - **Prefer `phpcs:ignore` + inline rationale** over removing the ignored check from CI entirely — a specific ignore documents the decision at the call site; a check removal silently covers future code too.
